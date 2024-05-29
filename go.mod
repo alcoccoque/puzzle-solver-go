@@ -16,6 +16,7 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.3.0
+    github.com/lib/pq v1.1.1
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
 	gopkg.in/go-playground/assert.v1 v1.2.1
 )
