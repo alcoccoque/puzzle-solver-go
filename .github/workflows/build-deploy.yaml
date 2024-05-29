@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres_user
+          POSTGRES_DB: postgres_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+
+    env:
+      GO111MODULE:
+      FORUM_DB_URL: "postgres://postgres_user@localhost:5432/postgres_password?sslmode=disable"
+
+    defaults:
+      run:
+        working-directory: ~/usr/src/app
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.12
+
+      - name: Fetch dependencies
+        run: go mod download
+
+      - name: Wait for Postgres to be ready
+        run: |
+          sudo apt-get install -y dockerize
+          dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - name: Run unit tests
+        run: go test -v ./tests/...
