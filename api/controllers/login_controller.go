@@ -8,7 +8,7 @@ import (
 	"github.com/alcoccoque/puzzle-solver-go/api/auth"
 	"github.com/alcoccoque/puzzle-solver-go/api/models"
 	"github.com/alcoccoque/puzzle-solver-go/api/responses"
-	"giithub.com/alcoccoque/puzzle-solver-go/api/utils/formaterror"
+	"github.com/alcoccoque/puzzle-solver-go/api/utils/formaterror"
 	"golang.org/x/crypto/bcrypt"
 )
 
