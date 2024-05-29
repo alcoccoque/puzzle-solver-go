@@ -8,11 +8,11 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"your_project/models"        // adjust the import path as needed
-	"your_project/responses"     // adjust the import path as needed
-	"your_project/auth"          // adjust the import path as needed
-	"your_project/formaterror"   // adjust the import path as needed
-	"your_project/solver"   // adjust the import path as needed
+	"github.com/alcoccoque/puzzle-solver-go/api/models"
+	"github.com/alcoccoque/puzzle-solver-go/api/responses"
+	"github.com/alcoccoque/puzzle-solver-go/api/auth"
+	"github.com/alcoccoque/puzzle-solver-go/api/utils/formaterror"
+	"github.com/alcoccoque/puzzle-solver-go/api//solver"
 )
 
 func (server *Server) SolveMatrix(w http.ResponseWriter, r *http.Request) {
